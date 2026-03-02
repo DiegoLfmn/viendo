@@ -41,6 +41,10 @@ public class piuService {
         piuRepo.deleteById(id);
     }
 
+    public List<piuEntity> obtenerPIUsPorEstado(String estado) {
+        return piuRepo.findByEstado(estado);
+    }
+
 //    //si se agregoi algo al repository
 //    public List<piuEntity> encontrarByFechaInstalacion(Date fecha) {
 //        return piuRepo.findByFecha_instalacion(fecha);

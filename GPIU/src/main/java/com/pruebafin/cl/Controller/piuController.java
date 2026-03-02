@@ -26,7 +26,13 @@ public class piuController {
         return new ResponseEntity<>(pius, HttpStatus.OK);
     }
 
-    @GetMapping("/api/pius/{id}")
+    @GetMapping("/estado")
+    public ResponseEntity<List<piuEntity>> obtenerPorEstado(@RequestParam String estado){
+        List<piuEntity> pius = piuSrvc.obtenerPIUsPorEstado(estado);
+        return new ResponseEntity<>(pius, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
     public ResponseEntity<piuEntity> obtenerIdDelPiu(@PathVariable Long id){
         return piuSrvc.obtenerPiuById(id)
                 .map(piuId -> new ResponseEntity<>(piuId,HttpStatus.OK))
@@ -49,7 +55,7 @@ public class piuController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarPiuPorId(@PathVariable Long id){
         return piuSrvc.obtenerPiuById(id)
                 .map(piu ->{

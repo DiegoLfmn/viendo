@@ -14,11 +14,11 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class contenidoEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_contenido", length = 100)
     private Long id_contenido;
 
-    @Column(name = "titulo",length = 20)
+    @Column(name = "titulo",length = 200)
     private String titulo;
 
     @Column(name = "texto", length = 1024)
@@ -30,13 +30,13 @@ public class contenidoEntity {
     @Column(name = "estado", length = 15)
     private String estado;
 
-    @Column(name = "fecha_creacion", length = 10, nullable = false)
+    @Column(name = "fecha_creacion", length = 10, nullable = true)
     private Date fecha_creacion;
 
-    @Column(name = "fecha_publicacion", length = 10, nullable = false)
+    @Column(name = "fecha_publicacion", length = 10, nullable = true)
     private Date fecha_publicacion;
 
-    @Column(name = "fecha_modificacion", length = 10, nullable = false)
+    @Column(name = "fecha_modificacion", length = 10, nullable = true)
     private Date fecha_modificacion;
 
     @Column(name = "enlace_externo", length = 50)

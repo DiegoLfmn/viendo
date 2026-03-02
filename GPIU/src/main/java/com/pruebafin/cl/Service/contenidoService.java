@@ -38,6 +38,10 @@ public class contenidoService {
         contenidoRepo.deleteById(id);
     }
 
+    public List<contenidoEntity> obtenerPorTipo(String tipo){
+        return contenidoRepo.findByTipo(tipo);
+    }
+
 //    public List<contenidoEntity> obtenerPorTitulo(String titulo){
 //        return contenidoRepo.findByTitulo(titulo);
 //    }

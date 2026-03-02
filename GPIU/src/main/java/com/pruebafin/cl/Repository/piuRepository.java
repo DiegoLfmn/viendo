@@ -11,4 +11,5 @@ import java.util.List;
 public interface piuRepository extends JpaRepository<piuEntity, Long> {
 //    List<piuEntity> findByFecha_instalacion(Date fecha);
 
+    List<piuEntity> findByEstado(String estado);
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/contenidos")
@@ -26,11 +27,23 @@ public class contenidoController {
         return new ResponseEntity<>(contenidos, HttpStatus.OK);
     }
 
-    @PostMapping("/api/contenidos/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<contenidoEntity> obtenerPorId(@PathVariable Long id){
         return contService.obtenerContenidoById(id)
                 .map(contenidoId -> new ResponseEntity<>(contenidoId,HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/procesos")
+    public ResponseEntity<List<contenidoEntity>> obtenerProcesos(){
+        List<contenidoEntity> procesos = contService.obtenerPorTipo("PROCESO");
+        return new ResponseEntity<>(procesos, HttpStatus.OK);
+    }
+
+    @GetMapping("/info-general")
+    public ResponseEntity<List<contenidoEntity>> obtenerInfoGeneral(){
+        List<contenidoEntity> infoGeneral = contService.obtenerPorTipo("INFO_GENERAL");
+        return new ResponseEntity<>(infoGeneral, HttpStatus.OK);
     }
 
     @PostMapping
@@ -49,7 +62,37 @@ public class contenidoController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping
+    @PutMapping("/{id}/validar")
+    public ResponseEntity<contenidoEntity> enviarAValidacion(@PathVariable Long id){
+        return contService.obtenerContenidoById(id)
+                .map(contenido -> {
+                    contenido.setEstado("EN_VALIDACION");
+                    return new ResponseEntity<>(contService.actualizarContenido(contenido), HttpStatus.OK);
+                })
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PutMapping("/{id}/aprobar")
+    public ResponseEntity<contenidoEntity> aprobarContenido(@PathVariable Long id){
+        return contService.obtenerContenidoById(id)
+                .map(contenido -> {
+                    contenido.setEstado("PUBLICADO");
+                    return new ResponseEntity<>(contService.actualizarContenido(contenido), HttpStatus.OK);
+                })
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PutMapping("/{id}/rechazar")
+    public ResponseEntity<contenidoEntity> rechazarContenido(@PathVariable Long id, @RequestBody(required = false) Map<String, String> body){
+        return contService.obtenerContenidoById(id)
+                .map(contenido -> {
+                    contenido.setEstado("RECHAZADO");
+                    return new ResponseEntity<>(contService.actualizarContenido(contenido), HttpStatus.OK);
+                })
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void>  eliminarContenido(@PathVariable Long id){
         return contService.obtenerContenidoById(id)
                 .map(contenido -> {

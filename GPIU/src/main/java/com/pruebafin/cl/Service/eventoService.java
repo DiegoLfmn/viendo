@@ -6,6 +6,7 @@ import com.pruebafin.cl.Repository.eventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,11 @@ public class eventoService {
 
     public void eliminarEvento(Long id) {
         eventoRepo.deleteById(id);
+    }
+
+    public List<eventoEntity> obtenerEventosVigentes() {
+        Date hoy = new Date();
+        return eventoRepo.findByFechaGreaterThanEqual(hoy);
     }
 
 }

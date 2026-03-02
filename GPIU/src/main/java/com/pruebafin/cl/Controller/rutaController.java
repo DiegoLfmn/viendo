@@ -27,7 +27,7 @@ public class rutaController {
         return new ResponseEntity<>(rutas, HttpStatus.OK);
     }
 
-    @GetMapping("/api/rutas/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<rutaEntity> obtenerRutaPorId(@PathVariable Long id){
         return rutaSrvc.obtenerRutaById(id)
                 .map(rutaId-> new ResponseEntity<>(rutaId, HttpStatus.OK))
@@ -51,7 +51,7 @@ public class rutaController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarRutaPorId(@PathVariable Long id){
         return rutaSrvc.obtenerRutaById(id)
                 .map(ruta -> {

@@ -1,12 +1,17 @@
 package com.pruebafin.cl.Repository;
+
 import com.pruebafin.cl.Entity.usuarioEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface usuarioRepository extends JpaRepository<usuarioEntity, Long> {
-//    List<usuarioEntity> findByNombre(String nombre);
-//
-//    List<usuarioEntity> findByCorreo(String correo);
+
+    @Query("SELECT u FROM usuarioEntity u WHERE u.correo_usuario = :correo")
+    Optional<usuarioEntity> findByCorreoUsuario(@Param("correo") String correo);
+
 }

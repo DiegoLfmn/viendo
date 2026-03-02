@@ -23,7 +23,7 @@ public class eventoEntity extends contenidoEntity {
     @Column(name = "tipo_evento", length = 30)
     private String tipo_evento;
 
-    @Column(name = "organizador", length = 20)
+    @Column(name = "organizador", length = 100)
     private String organizador;
 
 

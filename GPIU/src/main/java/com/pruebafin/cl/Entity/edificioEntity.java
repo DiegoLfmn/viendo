@@ -15,7 +15,7 @@ public class edificioEntity {
     @Column(name = "id_edificio", length = 100)
     private Long id_edificio;
 
-    @Column(name = "nombre_edificio", length = 20)
+    @Column(name = "nombre_edificio", length = 100)
     private String nombre_edificio;
 
     @Column(name = "codigo_edificio", length = 100)

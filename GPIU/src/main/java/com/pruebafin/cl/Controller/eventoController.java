@@ -25,7 +25,13 @@ public class eventoController {
         return new ResponseEntity<>(eventos, HttpStatus.OK);
     }
 
-    @GetMapping("/api/eventos/{id}")
+    @GetMapping("/vigentes")
+    public ResponseEntity<List<eventoEntity>> obtenerEventosVigentes(){
+        List<eventoEntity> eventos = eveService.obtenerEventosVigentes();
+        return new ResponseEntity<>(eventos, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
     public ResponseEntity<eventoEntity> obtenerIdDeEvento(@PathVariable Long id){
         return eveService.obtenerEventoPorId(id)
                 .map(eventoId -> new ResponseEntity<>(eventoId,HttpStatus.OK))
@@ -48,7 +54,7 @@ public class eventoController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarEventoPorId(@PathVariable Long id){
         return eveService.obtenerEventoPorId(id)
                 .map(evento ->{

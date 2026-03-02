@@ -20,8 +20,14 @@ public class usuarioEntity {
     @Column(name = "nombre_usuario",length = 80)
     private String nombre_usuario;
 
-    @Column(name = "correo_usuario", length = 20)
+    @Column(name = "correo_usuario", length = 100)
     private String correo_usuario;
+
+    @Column(name = "password_usuario", length = 255)
+    private String password_usuario;
+
+    @Column(name = "contrasena_usuario", length = 255)
+    private String contrasena_usuario;
 
     @Column (name = "estado_cuenta" , length = 10)
     private String estado_cuenta;
