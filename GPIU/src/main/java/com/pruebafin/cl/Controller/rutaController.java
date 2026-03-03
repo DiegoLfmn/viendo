@@ -1,8 +1,10 @@
 package com.pruebafin.cl.Controller;
 
+import com.pruebafin.cl.Entity.edificioEntity;
 import com.pruebafin.cl.Entity.piuEntity;
 import com.pruebafin.cl.Entity.rutaEntity;
 import com.pruebafin.cl.Entity.salaEntity;
+import com.pruebafin.cl.Service.edificioService;
 import com.pruebafin.cl.Service.piuService;
 import com.pruebafin.cl.Service.rutaService;
 import com.pruebafin.cl.Service.salaService;
@@ -33,6 +35,10 @@ public class rutaController {
 
     @Autowired
     private salaService salaSrvc;
+
+    @Autowired
+    private edificioService edificioSrvc;
+
     @GetMapping
     public ResponseEntity<List<rutaEntity>> obtenerTodasLasRutas(){
         List<rutaEntity> rutas = rutaSrvc.obtenerAllRutas();
@@ -74,29 +80,43 @@ public class rutaController {
     }
     @GetMapping("/coordenadas")
     public ResponseEntity<?> obtenerCoordenadasRuta(
-            @RequestParam Long idPiu,
-            @RequestParam Long idSala) {
+            @RequestParam Long idPiuOrigen,
+            @RequestParam String tipoDestino, // Recibe "sala" o "piu"
+            @RequestParam Long idDestino) {
 
-        // 1. Buscas el PIU en la base de datos (con tu piuService)
-        piuEntity piu = piuSrvc.obtenerPiuById(idPiu).orElseThrow();
+        // 1. Buscamos el origen (Siempre es un PIU)
+        piuEntity origen = piuSrvc.obtenerPiuById(idPiuOrigen).orElseThrow();
+        Map<String, Double> mapOrigen = new HashMap<>();
+        mapOrigen.put("lat", origen.getLatitudPiu());
+        mapOrigen.put("lng", origen.getLongitudPiu());
 
-        // 2. Buscas la Sala en la base de datos (con tu salaService)
-        salaEntity sala = salaSrvc.obtenerSalaPorId(idSala).orElseThrow();
+        // 2. Buscamos el Destino dependiendo de si es "sala" o "piu"
+        Map<String, Double> mapDestino = new HashMap<>();
 
-        // 3. Creas un JSON de respuesta con las coordenadas de ambos
+        if ("sala".equalsIgnoreCase(tipoDestino)) {
+            salaEntity destino = salaSrvc.obtenerSalaPorId(idDestino).orElseThrow();
+            mapDestino.put("lat", destino.getLatitudSala());
+            mapDestino.put("lng", destino.getLongitudSala());
+
+        } else if ("piu".equalsIgnoreCase(tipoDestino)) {
+            piuEntity destino = piuSrvc.obtenerPiuById(idDestino).orElseThrow();
+            mapDestino.put("lat", destino.getLatitudPiu());
+            mapDestino.put("lng", destino.getLongitudPiu());
+        }
+
+        else if ("edificio".equalsIgnoreCase(tipoDestino)) {
+            edificioEntity destino = edificioSrvc.obtenerEdificioPorId(idDestino).orElseThrow();
+            mapDestino.put("lat", destino.getLatitudEdificio());
+            mapDestino.put("lng", destino.getLongitudEdificio());
+        }
+
+        // 3. Juntamos ambas y las devolvemos al mapa
         Map<String, Object> respuesta = new HashMap<>();
-
-        Map<String, Double> origen = new HashMap<>();
-        origen.put("lat", piu.getLatitudPiu());
-        origen.put("lng", piu.getLongitudPiu());
-
-        Map<String, Double> destino = new HashMap<>();
-        destino.put("lat", sala.getLatitudSala());
-        destino.put("lng", sala.getLongitudSala());
-
-        respuesta.put("origen", origen);
-        respuesta.put("destino", destino);
+        respuesta.put("origen", mapOrigen);
+        respuesta.put("destino", mapDestino);
 
         return ResponseEntity.ok(respuesta);
     }
+
+
 }

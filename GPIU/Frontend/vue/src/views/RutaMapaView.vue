@@ -21,13 +21,18 @@
         <select v-model="destinoSeleccionado" class="input-select">
           <option value="" disabled>Selecciona un destino...</option>
           
-          <optgroup label="Ir a una Sala">
+          <optgroup label="SALAS">
             <option v-for="sala in listaSalas" :key="'s-'+sala.id_sala" :value="'sala-' + sala.id_sala">
               Sala {{ sala.codigoSala }} (Piso {{ sala.pisoSala }})
             </option>
           </optgroup>
+          <optgroup label = "EDIFICIOS">
+            <option v-for=  "edificio in listaEdificios" :key="'e-'+edificio.id_edificio":value=" 'edificio-' + edificio.id_edificio" >
+              Edificio {{ edificio.nombreEdificio }}
+            </option>
+          </optgroup>
 
-          <optgroup label="Ir a otro PIU">
+          <optgroup label="PIU´S">
             <option v-for="piu in listaPius" :key="'p-'+piu.id_piu" :value="'piu-' + piu.id_piu">
               PIU {{ piu.codigoPiu }}
             </option>
@@ -39,7 +44,7 @@
         class="btn-trazar" 
         @click="calcularRuta" 
         :disabled="!piuSeleccionado || !destinoSeleccionado">
-        Trazar Ruta
+        Definir Ruta
       </button>
     </div>
 
@@ -63,6 +68,7 @@ const router = useRouter()
 
 const listaPius = ref([])
 const listaSalas = ref([])
+const listaEdificios = ref([]) 
 
 const piuSeleccionado = ref("")
 const destinoSeleccionado = ref("") // Guardará algo como "sala-5" o "piu-2"
@@ -84,7 +90,11 @@ onMounted(async () => {
 
     const resSalas = await api.get('/salas');
     listaSalas.value = resSalas.data;
-    console.log("Salas cargadas:", listaSalas.value); // <-- Útil para ver si llegan vacías
+    console.log("Salas cargadas:", listaSalas.value); 
+
+    const resEdificios = await api.get('/edificios');
+    listaEdificios.value = resEdificios.data;
+    console.log("Edificios cargados:", listaEdificios.value); 
 
   } catch (error) {
     console.error("Error crítico al pedir las listas. Revisa si necesitas Iniciar Sesión:", error);

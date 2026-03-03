@@ -1,4 +1,5 @@
 package com.pruebafin.cl.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,13 +22,20 @@ public class edificioEntity {
     @Column(name = "codigo_edificio", length = 100)
     private String codigo_edificio;
 
+    @Column(name = "latitud_edificio")
+    private Double latitudEdificio;
+
+    @Column(name = "longitud_edificio")
+    private Double longitudEdificio;
 
     /// SALA
+    @JsonIgnore
     @OneToMany(mappedBy = "edificio")
     private Set<salaEntity> salas = new HashSet<>();
 
 
     /// CAMPUS
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "campus_id")
     private campusEntity campus;
