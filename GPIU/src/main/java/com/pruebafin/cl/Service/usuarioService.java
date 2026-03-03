@@ -37,9 +37,12 @@ public class usuarioService {
         usuarioRepo.deleteById(id);
     }
 
-//    public List<usuarioEntity> obtenerPorCorreo(String correo){
-//
-//        return usuarioRepo.findByCorreo(correo);
-//    }
+    public Optional<usuarioEntity> obtenerPorCorreo(String correo){
 
+        return usuarioRepo.findByCorreoUsuario(correo);
+    }
+
+    public List<usuarioEntity> obtenerPorNombreUsuario(String nombre){
+        return usuarioRepo.findByNombreUsuario(nombre);
+    }
 }

@@ -33,8 +33,12 @@ public class unidadorganizacionalService {
     public void eliminarUnidad(Long id) {
         unidadRepo.deleteById(id);
     }
-//    public List<unidadorganizacionalEntity> obtenerByNombre(String nombre) {
-//        return unidadRepo.findByNombre(nombre);
-//    }
+    public List<unidadorganizacionalEntity> obtenerByNombre(String nombre) {
+        return unidadRepo.findByNombreUnidad(nombre);
+    }
+
+    public List<unidadorganizacionalEntity> obtenerByTipoUnidad(String unidad) {
+        return unidadRepo.findByTipoUnidad(unidad);
+    }
 
 }

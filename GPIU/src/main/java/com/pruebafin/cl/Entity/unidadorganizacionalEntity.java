@@ -16,10 +16,10 @@ public class unidadorganizacionalEntity {
     private Long id_unidad;
 
     @Column(name = "nombre_unidad", length = 100)
-    private String nombre_unidad;
+    private String nombreUnidad;
 
     @Column(name = "tipo_unidad",length = 100)
-    private String tipo_unidad;
+    private String tipoUnidad;
 
 
     /// CONTENIDO

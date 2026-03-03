@@ -16,10 +16,10 @@ public class sistemaexternoEntity {
     private Long id_sistema;
 
     @Column(name = "nombre_sistext", length = 20)
-    private String nombre_sistext;
+    private String nombreSistext;
 
     @Column(name = "tipo_sistext", length = 30)
-    private String tipo_sistext;
+    private String tipoSistext;
 
     @Column(name = "url_servicio", length = 30)
     private String url_servicio;

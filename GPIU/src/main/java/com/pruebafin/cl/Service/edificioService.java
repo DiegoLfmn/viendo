@@ -41,7 +41,7 @@ public class edificioService {
         edificioRepo.deleteById(id);
     }
     //si se agregoi algo al repository
-//    public List<edificioEntity> buscarEdificioPorNombre(String nombre) {
-//        return edificioRepo.findByName(nombre);
-//    }
+    public List<edificioEntity> buscarEdificioPorNombre(String nombre) {
+        return edificioRepo.findBynombreEdificio(nombre);
+    }
 }

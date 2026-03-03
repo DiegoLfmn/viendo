@@ -16,7 +16,7 @@ public class rolEntity {
     private Long id_rol;
 
     @Column(name = "nombre_rol",length = 25)
-    private String nombre_rol;
+    private String nombreRol;
 
     @Column(name = "descripcion_rol",length = 1024)
     private String descripcion_rol;

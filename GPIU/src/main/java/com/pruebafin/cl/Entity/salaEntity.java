@@ -15,13 +15,13 @@ public class salaEntity {
     private Long id_sala;
 
     @Column(name = "codigo_sala", length = 200)
-    private String codigo_sala;
+    private String codigoSala;
 
     @Column(name = "piso_sala", length = 20)
-    private Integer  piso_sala;
+    private Integer  pisoSala;
 
     @Column(name = "capacidad_sala", length = 10)
-    private Integer capacidad_sala;
+    private Integer capacidadSala;
 
 
     /// EVENTO

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface puntointeresRepository extends JpaRepository<puntointeresEntity, Long> {
-//    List<puntointeresEntity> findByNombre(String nombre);
+    List<puntointeresEntity> findByNombreInteres(String nombre);
 }

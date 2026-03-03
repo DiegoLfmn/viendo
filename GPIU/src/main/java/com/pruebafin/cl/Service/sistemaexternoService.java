@@ -37,9 +37,9 @@ public class sistemaexternoService {
         sistemaRepo.deleteById(id);
     }
 
-//    public List<sistemaexternoEntity> obtenerPorNombreSistema(String nombre) {
-//        return sistemaRepo.findByNombre(nombre);
-//    }
+    public List<sistemaexternoEntity> obtenerPorNombreSistema(String nombre) {
+        return sistemaRepo.findByNombreSistext(nombre);
+    }
 
 
 }

@@ -16,7 +16,7 @@ public class edificioEntity {
     private Long id_edificio;
 
     @Column(name = "nombre_edificio", length = 100)
-    private String nombre_edificio;
+    private String nombreEdificio;
 
     @Column(name = "codigo_edificio", length = 100)
     private String codigo_edificio;

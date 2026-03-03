@@ -38,7 +38,7 @@ public class rolService {
         rolRepo.deleteById(id);
     }
 
-//    public List<rolEntity> obtenerRolPorNombre(String nombre){
-//        return rolRepo.findByNombre(nombre);
-//    }
+    public List<rolEntity> obtenerRolPorNombre(String nombre){
+        return rolRepo.findByNombreRol(nombre);
+    }
 }

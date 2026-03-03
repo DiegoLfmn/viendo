@@ -42,7 +42,9 @@ public class campusService {
         campusRepo.deleteById(id);
     }
     //si se agregoi algo al repository
-//    public campusEntity obtenerCampusPorNombre(String nombre){
-//        return campusRepo.findByName(nombre).get(0);
-//    }
+    public List<campusEntity> obtenerCampusPorNombre(String nombre){
+        return campusRepo.findBynombreCampus(nombre);
+    }
+
+
 }

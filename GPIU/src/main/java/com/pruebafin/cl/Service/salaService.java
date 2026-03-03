@@ -41,13 +41,13 @@ public class salaService {
         salaRepo.deleteById(id);
     }
     //si se agregoi algo al repository
-//    public List<salaEntity> encontrarPorCodigo(String codigo){
-//        return  salaRepo.findByCodigo(codigo);
-//    }
-//    public List<salaEntity> encontrarPorPiso(int piso){
-//        return  salaRepo.findByPiso(piso);
-//    }
-//    public List<salaEntity> encontrarPorCapacidad(String nombre){
-//        return  salaRepo.findByCapacidad(nombre);
-//    }
+    public List<salaEntity> encontrarPorCodigo(String codigo){
+        return  salaRepo.findByCodigoSala(codigo);
+    }
+    public List<salaEntity> encontrarPorPiso(Integer piso){
+        return  salaRepo.findByPisoSala(piso);
+    }
+    public List<salaEntity> encontrarPorCapacidad(Integer capacidad){
+        return  salaRepo.findByCapacidadSala(capacidad);
+    }
 }

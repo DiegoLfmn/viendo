@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface edificioRepository extends JpaRepository<edificioEntity, Long> {
-//    List<edificioEntity> findByName(String name);
+    List<edificioEntity> findBynombreEdificio(String name);
 }

@@ -16,10 +16,10 @@ public class puntointeresEntity {
     private Long id_punto;
 
     @Column(name = "nombre_interes", length = 100)
-    private String nombre_interes;
+    private String nombreInteres;
 
     @Column(name = "tipo_interes", length = 20)
-    private String tipo_interes;
+    private String tipoInteres;
 
     @Column(name = "coordenada_x", length = 20)
     private Float coordenada_x;

@@ -69,10 +69,10 @@ public class AuthController {
         respuesta.put("token", token);
         respuesta.put("user", Map.of(
             "id", usuario.getId_usuario(),
-            "nombre", usuario.getNombre_usuario(),
-            "correo", usuario.getCorreo_usuario(),
+            "nombre", usuario.getNombreUsuario(),
+            "correo", usuario.getCorreoUsuario(),
             "roles", usuario.getRoles().stream()
-                .map(r -> r.getNombre_rol().toUpperCase())
+                .map(r -> r.getNombreRol().toUpperCase())
                 .toList()
         ));
         return new ResponseEntity<>(respuesta, HttpStatus.OK);
@@ -105,10 +105,10 @@ public class AuthController {
         usuarioEntity usuario = usuarioOpt.get();
         Map<String, Object> user = new HashMap<>();
         user.put("id", usuario.getId_usuario());
-        user.put("nombre", usuario.getNombre_usuario());
-        user.put("correo", usuario.getCorreo_usuario());
+        user.put("nombre", usuario.getNombreUsuario());
+        user.put("correo", usuario.getCorreoUsuario());
         user.put("roles", usuario.getRoles().stream()
-                .map(r -> r.getNombre_rol().toUpperCase())
+                .map(r -> r.getNombreRol().toUpperCase())
                 .toList());
         return ResponseEntity.ok(user);
     }

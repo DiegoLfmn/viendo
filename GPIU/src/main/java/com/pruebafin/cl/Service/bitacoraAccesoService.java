@@ -36,14 +36,14 @@ public class bitacoraAccesoService {
         bitaRepo.deleteById(id);
     }
 
-//    public List<bitacoraAccesoEntity> obtenerByPIU(piuEntity piu){
-//        return bitaRepo.findByPIU(piu);
-//    }
-//
-//
-//
-//    public List<bitacoraAccesoEntity> findByUsuario(usuarioEntity usuario){
-//        return bitaRepo.findByUsuario(usuario);
-//    }
+    public List<bitacoraAccesoEntity> obtenerByPIU(piuEntity piu){
+        return bitaRepo.findBypiuDeBita(piu);
+    }
+
+
+
+    public List<bitacoraAccesoEntity> findByUsuario(usuarioEntity usuario){
+        return bitaRepo.findByusuario(usuario);
+    }
 
 }

@@ -42,9 +42,9 @@ public class contenidoService {
         return contenidoRepo.findByTipo(tipo);
     }
 
-//    public List<contenidoEntity> obtenerPorTitulo(String titulo){
-//        return contenidoRepo.findByTitulo(titulo);
-//    }
+    public List<contenidoEntity> obtenerPorTitulo(String titulo){
+        return contenidoRepo.findByTitulo(titulo);
+    }
 
 
 }

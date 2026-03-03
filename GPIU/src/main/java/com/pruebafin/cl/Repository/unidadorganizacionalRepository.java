@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface unidadorganizacionalRepository extends JpaRepository<unidadorganizacionalEntity, Long> {
-//    List<unidadorganizacionalEntity> findByNombre(String nombre);
-
+    List<unidadorganizacionalEntity> findByNombreUnidad(String nombre);
+    List<unidadorganizacionalEntity> findByTipoUnidad(String unidad);
 }

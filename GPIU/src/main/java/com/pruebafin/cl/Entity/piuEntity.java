@@ -14,13 +14,13 @@ public class piuEntity {
     @Column(name ="id_piu" , length = 100)
     private Long id_piu;
     @Column(name ="codigo_piu" , length = 200)
-    private String codigo;
+    private String codigoPiu;
 
     @Column(name = "estado_piu", length = 20)
-    private  String estado;
+    private  String estadoPiu;
 
     @Column(name = "fecha_instalacion", length = 10)
-    private Date fecha_instalacion;
+    private Date fechaInstalacion;
 
     /// INCIDENCIA PIU
     @OneToMany(mappedBy = "piuIncidente")

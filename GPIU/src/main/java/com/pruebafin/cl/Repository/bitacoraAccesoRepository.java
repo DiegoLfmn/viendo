@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface bitacoraAccesoRepository extends JpaRepository<bitacoraAccesoEntity, Long> {
-//    List<bitacoraAccesoEntity> findByUsuario(usuarioEntity usuario);
-//    List<bitacoraAccesoEntity> findByPIU(piuEntity piu);
+    List<bitacoraAccesoEntity> findByusuario(usuarioEntity usuario);
+    List<bitacoraAccesoEntity> findBypiuDeBita(piuEntity piu);
 
 }

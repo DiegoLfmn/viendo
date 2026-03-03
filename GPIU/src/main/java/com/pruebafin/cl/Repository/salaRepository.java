@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public interface salaRepository extends JpaRepository<salaEntity,Long> {
-//    List<salaEntity> findByCodigo(String codigo);
-//
-//    List<salaEntity> findByPiso(int piso);
-//
-//    List<salaEntity> findByCapacidad(String nombre);
+    List<salaEntity> findByCodigoSala(String codigo);
+
+    List<salaEntity> findByPisoSala(Integer piso);
+
+    List<salaEntity> findByCapacidadSala(Integer capacidad);
 }

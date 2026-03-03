@@ -15,7 +15,7 @@ public class campusEntity {
     private Long id_campus;
 
     @Column(name = "nombre_campus", length = 100)
-    private String nombre_campus;
+    private String nombreCampus;
 
 
     /// EDIFICIO

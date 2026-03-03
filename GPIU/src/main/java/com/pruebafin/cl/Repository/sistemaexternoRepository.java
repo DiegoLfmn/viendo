@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface sistemaexternoRepository extends JpaRepository<sistemaexternoEntity, Long> {
-//    List<sistemaexternoEntity> findByNombre(String nombre);
+    List<sistemaexternoEntity> findByNombreSistext(String nombreSistext);
 }

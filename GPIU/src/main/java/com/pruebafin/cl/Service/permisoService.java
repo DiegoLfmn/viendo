@@ -38,5 +38,8 @@ public class permisoService {
         permisoRepo.deleteById(id);
     }
 
+    public List<permisoEntity> obtenerPermisosPorCodigo(String codigo){
+        return permisoRepo.findByCodigo(codigo);
+    }
 
 }

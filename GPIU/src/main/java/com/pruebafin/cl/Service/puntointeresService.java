@@ -41,7 +41,7 @@ public class puntointeresService {
         puntoRepo.deleteById(id);
     }
     //si se agregoi algo al repository
-//    public List<puntointeresEntity> obtenerPuntoPorNombre(String nombre) {
-//        return puntoRepo.findByNombre(nombre);
-//    }
+    public List<puntointeresEntity> obtenerPuntoPorNombre(String nombre) {
+        return puntoRepo.findByNombreInteres(nombre);
+    }
 }

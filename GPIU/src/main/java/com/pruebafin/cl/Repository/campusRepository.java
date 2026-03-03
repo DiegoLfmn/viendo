@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface campusRepository extends JpaRepository<campusEntity, Long> {
-//    List<campusEntity> findByName(String name);
+
+    // Spring Boot leerá esto y buscará la variable "nombre_campus" en tu Entity
+    List<campusEntity> findBynombreCampus(String nombre);
 }

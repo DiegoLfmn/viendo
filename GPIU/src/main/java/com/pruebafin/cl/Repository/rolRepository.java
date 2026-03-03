@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface rolRepository extends JpaRepository<rolEntity,Long> {
-//    List<rolEntity> findByNombre(String nombre);
+    List<rolEntity> findByNombreRol(String nombreRol);
 
 
 }
