@@ -1,14 +1,20 @@
 package com.pruebafin.cl.Controller;
 
+import com.pruebafin.cl.Entity.piuEntity;
 import com.pruebafin.cl.Entity.rutaEntity;
+import com.pruebafin.cl.Entity.salaEntity;
+import com.pruebafin.cl.Service.piuService;
 import com.pruebafin.cl.Service.rutaService;
+import com.pruebafin.cl.Service.salaService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/rutas")
@@ -21,6 +27,12 @@ public class rutaController {
         this.rutaSrvc = rutaSrvc;
     }
 
+
+    @Autowired
+    private piuService piuSrvc;
+
+    @Autowired
+    private salaService salaSrvc;
     @GetMapping
     public ResponseEntity<List<rutaEntity>> obtenerTodasLasRutas(){
         List<rutaEntity> rutas = rutaSrvc.obtenerAllRutas();
@@ -59,5 +71,32 @@ public class rutaController {
                     return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
                 })
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    @GetMapping("/coordenadas")
+    public ResponseEntity<?> obtenerCoordenadasRuta(
+            @RequestParam Long idPiu,
+            @RequestParam Long idSala) {
+
+        // 1. Buscas el PIU en la base de datos (con tu piuService)
+        piuEntity piu = piuSrvc.obtenerPiuById(idPiu).orElseThrow();
+
+        // 2. Buscas la Sala en la base de datos (con tu salaService)
+        salaEntity sala = salaSrvc.obtenerSalaPorId(idSala).orElseThrow();
+
+        // 3. Creas un JSON de respuesta con las coordenadas de ambos
+        Map<String, Object> respuesta = new HashMap<>();
+
+        Map<String, Double> origen = new HashMap<>();
+        origen.put("lat", piu.getLatitudPiu());
+        origen.put("lng", piu.getLongitudPiu());
+
+        Map<String, Double> destino = new HashMap<>();
+        destino.put("lat", sala.getLatitudSala());
+        destino.put("lng", sala.getLongitudSala());
+
+        respuesta.put("origen", origen);
+        respuesta.put("destino", destino);
+
+        return ResponseEntity.ok(respuesta);
     }
 }
