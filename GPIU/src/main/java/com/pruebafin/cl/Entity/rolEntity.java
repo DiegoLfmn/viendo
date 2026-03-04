@@ -1,5 +1,7 @@
 package com.pruebafin.cl.Entity;
-
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -24,7 +26,9 @@ public class rolEntity {
 
     ///  1 ROL TIENE MUCHOS PERMISOS
     /// 1 PERMISO ESTA ASIGNADO A VARIOS ROLES
-
+    @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany
     @JoinTable(
             name = "rol_permisos",
@@ -36,9 +40,9 @@ public class rolEntity {
 
     /// 1 ROL puede estar asignado a varios USUARIOS
     /// 1 USUARIO puede tener varios ROLES
-    ///
+    @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany(mappedBy = "roles")
     private Set<usuarioEntity> usuariosAsignados = new HashSet<>();
-
-
 }

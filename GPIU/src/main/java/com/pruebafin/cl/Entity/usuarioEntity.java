@@ -2,7 +2,8 @@ package com.pruebafin.cl.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +51,8 @@ public class usuarioEntity {
     private Set<contenidoEntity> contenido_consulta = new HashSet<>();
 
     // ROLES
-    @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "usuario_roles",
