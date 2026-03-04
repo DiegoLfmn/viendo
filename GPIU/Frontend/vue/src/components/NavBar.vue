@@ -24,7 +24,9 @@
           <li><RouterLink to="/informacion-general" @click="menuOpen = false">Información General</RouterLink></li>
           <li><RouterLink to="/eventos" @click="menuOpen = false">Eventos</RouterLink></li>
           <li><RouterLink to="/procesos-administrativos" @click="menuOpen = false">Procesos Administrativos</RouterLink></li>
+          <li><RouterLink to="/ruta/1" @click="menuOpen = false">Rutas</RouterLink></li>
           <li v-if="authStore.isAuthenticated">
+          
             <RouterLink to="/informacion-privada" @click="menuOpen = false">Info Privada</RouterLink>
           </li>
           <li v-if="authStore.isAdmin">

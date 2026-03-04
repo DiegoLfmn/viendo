@@ -34,6 +34,12 @@
           <h3>Procesos Administrativos</h3>
           <p>Matrícula, normativas, avisos y gestión de trámites universitarios.</p>
         </RouterLink>
+        
+        <RouterLink to="/ruta/1" class="quick-card card" aria-label="Mapa de Rutas">
+          <div class="quick-icon" aria-hidden="true">🗺️</div>
+          <h3>Mapa de Rutas</h3>
+          <p>Encuentra una ruta para llegar al destino deseado dentro del campus.</p>
+        </RouterLink>
 
         <RouterLink
           v-if="authStore.isAuthenticated"

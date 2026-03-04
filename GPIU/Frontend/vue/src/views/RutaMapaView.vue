@@ -71,7 +71,7 @@ const listaSalas = ref([])
 const listaEdificios = ref([]) 
 
 const piuSeleccionado = ref("")
-const destinoSeleccionado = ref("") // Guardará algo como "sala-5" o "piu-2"
+const destinoSeleccionado = ref("") 
 
 let map = null;
 let controlDeRuta = null;
@@ -83,10 +83,10 @@ onMounted(async () => {
   }).addTo(map);
 
   try {
-    // Pedimos los datos al backend
+    
     const resPius = await api.get('/pius');
     listaPius.value = resPius.data;
-    console.log("PIUs cargados:", listaPius.value); // <-- Útil para ver si llegan vacíos
+    console.log("PIUs cargados:", listaPius.value);
 
     const resSalas = await api.get('/salas');
     listaSalas.value = resSalas.data;
@@ -107,10 +107,10 @@ const calcularRuta = async () => {
       map.removeControl(controlDeRuta);
     }
 
-    // Como el destino puede ser "sala-5" o "piu-2", lo dividimos.
+    
     const [tipo, id] = destinoSeleccionado.value.split('-');
 
-    // Llamamos al nuevo método que hiciste en Spring Boot
+    
     const url = `/rutas/coordenadas?idPiuOrigen=${piuSeleccionado.value}&tipoDestino=${tipo}&idDestino=${id}`;
     const response = await api.get(url);
     const datos = response.data;
