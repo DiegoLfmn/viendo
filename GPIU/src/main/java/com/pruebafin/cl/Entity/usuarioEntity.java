@@ -34,10 +34,16 @@ public class usuarioEntity {
     private String estado_cuenta;
 
 
+<<<<<<< HEAD
 
     // CREADOR
     @JsonIgnore
     @OneToMany(mappedBy = "autor")
+=======
+    // CREADOR - mappedBy debe coincidir con el nombre del campo en contenidoEntity (fue renombrado de 'autor' a 'autorEntidad')
+    @JsonIgnore
+    @OneToMany(mappedBy = "autorEntidad")
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
     private List<contenidoEntity> contenidos = new ArrayList<>();
 
     // LECTOR
@@ -75,4 +81,8 @@ public class usuarioEntity {
             inverseJoinColumns = @JoinColumn(name = "incidenciapiu_id")
     )
     private List<incidenciapiuEntity> incidenciasPiu = new ArrayList<>();
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e

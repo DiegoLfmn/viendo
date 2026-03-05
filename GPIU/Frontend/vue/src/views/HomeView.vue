@@ -42,7 +42,11 @@
         </RouterLink>
 
         <RouterLink
+<<<<<<< HEAD
           v-if="authStore.isAuthenticated"
+=======
+          v-if="authStore.isAuthenticated && ['ESTUDIANTE','PROFESOR','FUNCIONARIO'].includes(authStore.userRole)"
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
           to="/informacion-privada"
           class="quick-card card private"
           aria-label="Información Privada"
@@ -52,7 +56,11 @@
           <p>Malla curricular, horarios, salas y datos personalizados según tu rol.</p>
         </RouterLink>
 
+<<<<<<< HEAD
         <div v-else class="quick-card card private-locked" aria-label="Información Privada bloqueada">
+=======
+        <div v-if="!authStore.isAuthenticated" class="quick-card card private-locked" aria-label="Información Privada bloqueada">
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
           <div class="quick-icon" aria-hidden="true">🔒</div>
           <h3>Información Privada</h3>
           <p>Inicia sesión para acceder a tu información personalizada.</p>

@@ -12,4 +12,10 @@ public interface contenidoRepository extends JpaRepository<contenidoEntity, Long
     List<contenidoEntity> findByTitulo(String titulo);
 
     List<contenidoEntity> findByTipo(String tipo);
+<<<<<<< HEAD
 }
+=======
+
+    List<contenidoEntity> findByEstado(String estado);
+}
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e

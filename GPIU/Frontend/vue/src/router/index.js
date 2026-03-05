@@ -5,8 +5,11 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import InformacionGeneralView from '../views/InformacionGeneralView.vue'
 import EventosView from '../views/EventosView.vue'
+<<<<<<< HEAD
 import EventoDetalleView from '../views/EventoDetalleView.vue'
 import ProcesosAdmView from '../views/ProcesosAdmView.vue'
+=======
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
 import InfoPrivadaView from '../views/InfoPrivadaView.vue'
 import RutaMapaView from '../views/RutaMapaView.vue'
 import DashboardAdmin from '../views/admin/DashboardAdmin.vue'
@@ -22,8 +25,11 @@ const routes = [
   { path: '/login', component: LoginView },
   { path: '/informacion-general', component: InformacionGeneralView },
   { path: '/eventos', component: EventosView },
+<<<<<<< HEAD
   { path: '/eventos/:id', component: EventoDetalleView },
   { path: '/procesos-administrativos', component: ProcesosAdmView },
+=======
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
   {
     path: '/informacion-privada',
     component: InfoPrivadaView,
@@ -48,12 +54,20 @@ const routes = [
   {
     path: '/admin/contenido',
     component: ContenidoCRUDView,
+<<<<<<< HEAD
     meta: { requiresAuth: true, roles: ['ADMINISTRADOR', 'GESTOR', 'OPERADOR'] }
+=======
+    meta: { requiresAuth: true, roles: ['ADMINISTRADOR', 'GESTOR'] }
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
   },
   {
     path: '/admin/validacion',
     component: ValidacionContenidoView,
+<<<<<<< HEAD
     meta: { requiresAuth: true, roles: ['ADMINISTRADOR', 'GESTOR'] }
+=======
+    meta: { requiresAuth: true, roles: ['ADMINISTRADOR'] }
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
   },
   {
     path: '/admin/reportes',
@@ -90,4 +104,8 @@ router.beforeEach((to, _from, next) => {
   next()
 })
 
+<<<<<<< HEAD
 export default router
+=======
+export default router
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e

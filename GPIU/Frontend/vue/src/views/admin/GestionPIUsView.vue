@@ -30,30 +30,36 @@
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
+<tbody>
           <tr v-if="piusFiltrados.length === 0">
             <td colspan="6" style="text-align:center; color: var(--color-text-light);">No hay PIUs registrados.</td>
           </tr>
-          <tr v-for="piu in piusFiltrados" :key="piu.id">
-            <td>{{ piu.id }}</td>
-            <td><strong>{{ piu.codigo }}</strong></td>
-            <td>{{ piu.ubicacion }}</td>
+          <tr v-for="piu in piusFiltrados" :key="piu.id_piu">
+            <td>{{ piu.id_piu }}</td>
+            <td><strong>{{ piu.codigoPiu }}</strong></td>
             <td>
-              <span class="estado-dot" :class="`estado-${piu.estado}`" aria-label="Estado del PIU"></span>
-              {{ estadoLabel(piu.estado) }}
+              Lat: {{ piu.latitudPiu }} <br>
+              Lon: {{ piu.longitudPiu }}
+            </td>
+            <td>
+              <span class="estado-dot" :class="`estado-${piu.estadoPiu}`" aria-label="Estado del PIU"></span>
+              {{ estadoLabel(piu.estadoPiu) }}
             </td>
             <td>{{ piu.fechaInstalacion }}</td>
             <td class="acciones-cell">
-              <button class="btn-sm btn-secondary" @click="editarPIU(piu)" :aria-label="`Editar PIU ${piu.codigo}`">Editar</button>
-              <button class="btn-sm btn-danger" @click="confirmarBaja(piu)" :aria-label="`Dar de baja PIU ${piu.codigo}`">Baja</button>
-              <button class="btn-sm btn-outline" @click="solicitarTraslado(piu)" :aria-label="`Trasladar PIU ${piu.codigo}`">Trasladar</button>
+              <button class="btn-sm btn-secondary" @click="editarPIU(piu)" :aria-label="`Editar PIU ${piu.codigoPiu}`">Editar</button>
+<<<<<<< HEAD
+              <button class="btn-sm btn-danger" @click="confirmarBaja(piu)" :aria-label="`Dar de baja PIU ${piu.codigoPiu}`">Baja</button>
+=======
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
+              <button class="btn-sm btn-outline" @click="solicitarTraslado(piu)" :aria-label="`Trasladar PIU ${piu.codigoPiu}`">Trasladar</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Modal Nuevo/Editar PIU -->
+    
     <div v-if="modalVisible" class="modal-overlay" role="dialog" aria-modal="true" :aria-label="editando ? 'Editar PIU' : 'Nuevo PIU'">
       <div class="modal-content">
         <div class="modal-header">
@@ -63,28 +69,28 @@
 
         <form @submit.prevent="guardarPIU">
           <div class="form-group">
-            <label for="piu-codigo">Código</label>
-            <input id="piu-codigo" v-model="formPIU.codigo" type="text" class="form-control" required placeholder="Ej: PIU-005" />
+            <label for="piu-codigo">Código PIU</label>
+            <input id="piu-codigo" v-model="formPIU.codigoPiu" type="text" class="form-control" required placeholder="Ej: PIU-005" />
           </div>
           <div class="form-group">
-            <label for="piu-ubicacion">Ubicación / Sala</label>
-            <input id="piu-ubicacion" v-model="formPIU.ubicacion" type="text" class="form-control" required placeholder="Ej: Biblioteca Central - Hall" />
-          </div>
-          <div class="form-group">
-            <label for="piu-ip">Dirección IP</label>
-            <input id="piu-ip" v-model="formPIU.ip" type="text" class="form-control" placeholder="Ej: 192.168.1.105" />
-          </div>
-          <div class="form-group">
-            <label for="piu-pantalla">Tipo de Pantalla</label>
-            <input id="piu-pantalla" v-model="formPIU.tipoPantalla" type="text" class="form-control" placeholder="Ej: 55 pulgadas touch" />
-          </div>
-          <div class="form-group">
-            <label for="piu-conectividad">Conectividad</label>
-            <select id="piu-conectividad" v-model="formPIU.conectividad" class="form-control">
-              <option>WiFi + LAN</option>
-              <option>WiFi</option>
-              <option>LAN</option>
+            <label for="piu-estado">Estado</label>
+            <select id="piu-estado" v-model="formPIU.estadoPiu" class="form-control" required>
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+              <option value="mantenimiento">Mantenimiento</option>
             </select>
+          </div>
+          <div class="form-group">
+            <label for="piu-latitud">Latitud</label>
+            <input id="piu-latitud" v-model="formPIU.latitudPiu" type="number" step="any" class="form-control" placeholder="Ej: -33.456" />
+          </div>
+          <div class="form-group">
+            <label for="piu-longitud">Longitud</label>
+            <input id="piu-longitud" v-model="formPIU.longitudPiu" type="number" step="any" class="form-control" placeholder="Ej: -70.654" />
+          </div>
+          <div class="form-group">
+            <label for="piu-fecha">Fecha de Instalación</label>
+            <input id="piu-fecha" v-model="formPIU.fechaInstalacion" type="date" class="form-control" />
           </div>
 
           <div v-if="mensajeForm" class="alert" :class="mensajeForm.tipo === 'error' ? 'alert-error' : 'alert-success'">
@@ -115,16 +121,16 @@ const editandoId = ref(null)
 const mensajeForm = ref(null)
 
 const formPIU = ref({
-  codigo: '',
-  ubicacion: '',
-  ip: '',
-  tipoPantalla: '',
-  conectividad: 'WiFi + LAN'
+  codigoPiu: '',
+  estadoPiu: 'Activo',
+  latitudPiu: null,
+  longitudPiu: null,
+  fechaInstalacion: ''
 })
 
 const piusFiltrados = computed(() => {
   if (!filtroEstado.value) return piuStore.pius
-  return piuStore.pius.filter(p => p.estado === filtroEstado.value)
+  return piuStore.pius.filter(p => p.estadoPiu === filtroEstado.value)
 })
 
 function estadoLabel(estado) {
@@ -135,19 +141,25 @@ function estadoLabel(estado) {
 function abrirModalNuevo() {
   editando.value = false
   editandoId.value = null
-  formPIU.value = { codigo: '', ubicacion: '', ip: '', tipoPantalla: '', conectividad: 'WiFi + LAN' }
+  formPIU.value = { codigoPiu: '', estadoPiu: 'activo', latitudPiu: null, longitudPiu: null, fechaInstalacion: '' }
   mensajeForm.value = null
   modalVisible.value = true
 }
 
 function editarPIU(piu) {
   editando.value = true
-  editandoId.value = piu.id
-  formPIU.value = { codigo: piu.codigo, ubicacion: piu.ubicacion, ip: piu.ip || '', tipoPantalla: piu.tipoPantalla || '', conectividad: piu.conectividad || 'LAN' }
+  editandoId.value = piu.id_piu 
+  formPIU.value = { 
+    codigoPiu: piu.codigoPiu, 
+    estadoPiu: piu.estadoPiu, 
+    latitudPiu: piu.latitudPiu, 
+    longitudPiu: piu.longitudPiu, 
+
+    fechaInstalacion: piu.fechaInstalacion ? piu.fechaInstalacion.split('T')[0] : ''
+  }
   mensajeForm.value = null
   modalVisible.value = true
 }
-
 function cerrarModal() {
   modalVisible.value = false
 }
@@ -169,15 +181,21 @@ async function guardarPIU() {
 }
 
 async function confirmarBaja(piu) {
-  if (confirm(`¿Está seguro de dar de baja el PIU ${piu.codigo}?`)) {
-    await piuStore.solicitarDesconexion(piu.id, 'Baja administrativa')
+  if (confirm(`¿Está seguro de dar de baja el PIU ${piu.codigoPiu}?`)) {
+    await piuStore.solicitarDesconexion(piu.id_piu, 'Baja administrativa')
   }
 }
 
 function solicitarTraslado(piu) {
-  const nuevaUbicacion = prompt(`Nueva ubicación para ${piu.codigo}:`)
-  if (nuevaUbicacion) {
-    piuStore.actualizarPIU(piu.id, { ...piu, ubicacion: nuevaUbicacion })
+  const nuevaLat = prompt(`Nueva latitud para ${piu.codigoPiu}:`, piu.latitudPiu || '')
+  const nuevaLon = prompt(`Nueva longitud para ${piu.codigoPiu}:`, piu.longitudPiu || '')
+  
+  if (nuevaLat !== null && nuevaLon !== null) {
+    piuStore.actualizarPIU(piu.id_piu, { 
+      ...piu, 
+      latitudPiu: parseFloat(nuevaLat),
+      longitudPiu: parseFloat(nuevaLon)
+    })
   }
 }
 

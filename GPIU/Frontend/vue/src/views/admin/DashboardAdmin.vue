@@ -14,7 +14,11 @@
           </li>
           <li><RouterLink to="/admin/monitoreo" active-class="activo">📡 Monitoreo</RouterLink></li>
           <li><RouterLink to="/admin/contenido" active-class="activo">📝 Contenido</RouterLink></li>
+<<<<<<< HEAD
           <li v-if="['ADMINISTRADOR', 'GESTOR'].includes(authStore.userRole)">
+=======
+          <li v-if="authStore.userRole === 'ADMINISTRADOR'">
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
             <RouterLink to="/admin/validacion" active-class="activo">✅ Validación</RouterLink>
           </li>
           <li><RouterLink to="/admin/reportes" active-class="activo">📈 Reportes</RouterLink></li>
@@ -82,12 +86,20 @@
           <h3>Monitoreo</h3>
           <p>Estado en tiempo real de los dispositivos e incidencias.</p>
         </RouterLink>
+<<<<<<< HEAD
         <RouterLink to="/admin/contenido" class="seccion-link card">
+=======
+        <RouterLink to="/admin/contenido" class="seccion-link card" v-if="['ADMINISTRADOR','GESTOR'].includes(authStore.userRole)">
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
           <span class="sec-icon" aria-hidden="true">📝</span>
           <h3>Gestión de Contenido</h3>
           <p>Crear, editar y gestionar el contenido del sistema.</p>
         </RouterLink>
+<<<<<<< HEAD
         <RouterLink v-if="['ADMINISTRADOR', 'GESTOR'].includes(authStore.userRole)" to="/admin/validacion" class="seccion-link card">
+=======
+        <RouterLink v-if="['ADMINISTRADOR'].includes(authStore.userRole)" to="/admin/validacion" class="seccion-link card">
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
           <span class="sec-icon" aria-hidden="true">✅</span>
           <h3>Validación de Contenido</h3>
           <p>Revisar y aprobar contenidos enviados a validación.</p>

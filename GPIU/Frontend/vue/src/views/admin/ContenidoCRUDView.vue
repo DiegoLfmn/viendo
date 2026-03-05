@@ -65,7 +65,11 @@
               <template v-if="c.estado === 'borrador'">
                 <button class="btn-sm btn-secondary" @click="editarContenido(c)" :aria-label="`Editar ${c.titulo}`">Editar</button>
                 <button class="btn-sm btn-outline" @click="enviarValidacion(c)" :aria-label="`Enviar a validación ${c.titulo}`">Enviar</button>
+<<<<<<< HEAD
                 <button class="btn-sm btn-danger" @click="eliminarContenido(c)" :aria-label="`Eliminar ${c.titulo}`">Eliminar</button>
+=======
+                <button v-if="authStore.userRole === 'ADMINISTRADOR'" class="btn-sm btn-danger" @click="eliminarContenido(c)" :aria-label="`Eliminar ${c.titulo}`">Eliminar</button>
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
               </template>
               <template v-else-if="c.estado === 'en_validacion'">
                 <button class="btn-sm btn-secondary" @click="verDetalle(c)" :aria-label="`Ver detalle de ${c.titulo}`">Ver</button>

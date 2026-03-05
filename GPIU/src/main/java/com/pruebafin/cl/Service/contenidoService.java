@@ -41,10 +41,20 @@ public class contenidoService {
     public List<contenidoEntity> obtenerPorTipo(String tipo){
         return contenidoRepo.findByTipo(tipo);
     }
+<<<<<<< HEAD
+
+    public List<contenidoEntity> obtenerPorTitulo(String titulo){
+        return contenidoRepo.findByTitulo(titulo);
+    }
+=======
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
 
     public List<contenidoEntity> obtenerPorTitulo(String titulo){
         return contenidoRepo.findByTitulo(titulo);
     }
 
+    public List<contenidoEntity> obtenerPorEstado(String estado){
+        return contenidoRepo.findByEstado(estado);
+    }
 
 }

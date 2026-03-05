@@ -42,11 +42,19 @@ public class usuarioController {
     public ResponseEntity<usuarioEntity> actualizarUsuario(@PathVariable Long id, @RequestBody usuarioEntity usuario){
         return usuService.obtenerUsuarioPorId(id)
                 .map(usuarioExiste -> {
-                    usuario.setId_usuario(id);
-                    return new ResponseEntity<>(usuService.actualizarUsuario(usuario),HttpStatus.OK);
+
+                    usuarioExiste.setNombreUsuario(usuario.getNombreUsuario());
+                    usuarioExiste.setCorreoUsuario(usuario.getCorreoUsuario());
+                    usuarioExiste.setEstado_cuenta(usuario.getEstado_cuenta());
+                    usuarioExiste.setRoles(usuario.getRoles());
+
+                    if (usuario.getContrasena_usuario() != null && !usuario.getContrasena_usuario().isEmpty()) {
+                        usuarioExiste.setContrasena_usuario(usuario.getContrasena_usuario());
+                    }
+
+                    return new ResponseEntity<>(usuService.actualizarUsuario(usuarioExiste),HttpStatus.OK);
                 })
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-
     }
 
     @DeleteMapping("/{id}")

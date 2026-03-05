@@ -17,7 +17,11 @@
   --transition: 0.3s ease;
 }
 
+<<<<<<< HEAD
 /* Reset básico */
+=======
+/* Reset  */
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -190,6 +194,14 @@ a:hover {
   color: #856404;
 }
 
+<<<<<<< HEAD
+=======
+.badge-rol {
+  background-color: #66486d;
+  color: #210531;
+}
+
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
 /* Formularios */
 .form-group {
   margin-bottom: 1rem;

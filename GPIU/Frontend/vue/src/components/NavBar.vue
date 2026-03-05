@@ -23,10 +23,15 @@
           <li><RouterLink to="/" @click="menuOpen = false">Inicio</RouterLink></li>
           <li><RouterLink to="/informacion-general" @click="menuOpen = false">Información General</RouterLink></li>
           <li><RouterLink to="/eventos" @click="menuOpen = false">Eventos</RouterLink></li>
+<<<<<<< HEAD
           <li><RouterLink to="/procesos-administrativos" @click="menuOpen = false">Procesos Administrativos</RouterLink></li>
           <li><RouterLink to="/ruta/1" @click="menuOpen = false">Rutas</RouterLink></li>
           <li v-if="authStore.isAuthenticated">
           
+=======
+          <li><RouterLink to="/ruta/1" @click="menuOpen = false">Rutas</RouterLink></li>
+          <li v-if="authStore.isAuthenticated && ['ESTUDIANTE','PROFESOR','FUNCIONARIO'].includes(authStore.userRole)">
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
             <RouterLink to="/informacion-privada" @click="menuOpen = false">Info Privada</RouterLink>
           </li>
           <li v-if="authStore.isAdmin">
@@ -80,6 +85,7 @@ async function handleLogout() {
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+<<<<<<< HEAD
 
 .navbar-container {
   max-width: 1200px;
@@ -91,10 +97,22 @@ async function handleLogout() {
   height: 64px;
 }
 
+=======
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
 .navbar-brand {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+<<<<<<< HEAD
   color: var(--color-white);
   text-decoration: none;
   font-weight: 700;
@@ -110,6 +128,13 @@ async function handleLogout() {
   letter-spacing: 2px;
 }
 
+=======
+  text-decoration: none;
+  color: var(--color-white);
+}
+.navbar-logo { font-size: 1.4rem; }
+.navbar-title { font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; }
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
 .navbar-toggle {
   display: none;
   flex-direction: column;
@@ -119,7 +144,10 @@ async function handleLogout() {
   cursor: pointer;
   padding: 0.25rem;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
 .hamburger-line {
   display: block;
   width: 24px;
@@ -127,6 +155,7 @@ async function handleLogout() {
   background-color: var(--color-white);
   border-radius: 2px;
 }
+<<<<<<< HEAD
 
 .navbar-menu {
   display: flex;
@@ -152,11 +181,24 @@ async function handleLogout() {
   transition: all var(--transition);
 }
 
+=======
+.navbar-menu { display: flex; align-items: center; gap: 1.5rem; }
+.nav-links { display: flex; list-style: none; gap: 0.25rem; margin: 0; padding: 0; }
+.nav-links a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  transition: all var(--transition);
+}
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
 .nav-links a:hover,
 .nav-links a.router-link-active {
   color: var(--color-white);
   background-color: rgba(255, 255, 255, 0.15);
 }
+<<<<<<< HEAD
 
 .navbar-auth {
   display: flex;
@@ -252,5 +294,50 @@ async function handleLogout() {
     width: 100%;
     justify-content: space-between;
   }
+=======
+.navbar-auth { display: flex; align-items: center; gap: 0.75rem; }
+.user-info { display: flex; align-items: center; gap: 0.5rem; }
+.user-name { font-size: 0.85rem; color: rgba(255, 255, 255, 0.9); }
+.user-role { font-size: 0.7rem; }
+.btn-login {
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 0.35rem 0.9rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all var(--transition);
+}
+.btn-login:hover { background-color: rgba(255, 255, 255, 0.15); }
+.btn-logout {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all var(--transition);
+}
+.btn-logout:hover { background-color: rgba(255, 255, 255, 0.15); color: var(--color-white); }
+@media (max-width: 768px) {
+  .navbar-toggle { display: flex; }
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 60px; left: 0; right: 0;
+    background-color: var(--color-primary);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 99;
+  }
+  .navbar-menu.is-open { display: flex; }
+  .nav-links { flex-direction: column; width: 100%; }
+  .nav-links a { display: block; padding: 0.6rem 0.5rem; }
+  .navbar-auth { width: 100%; flex-direction: column; align-items: flex-start; }
+>>>>>>> b787786feb3dc4e84859a84bdb255fa2b5b7745e
 }
 </style>
